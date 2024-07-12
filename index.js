@@ -70,6 +70,18 @@ app.delete('/api/notes/:id', (req, res) => {
     res.status(204).end()
 })
 
+app.put('/api/notes/:id',(req,res)=>{
+    const id = Number(req.params.id);
+    const findInd = notes.findIndex((note)=> note.id === id)
+    if(findInd === -1){
+        return res.status(404).json({
+            error:'Not Found'
+        })
+    }
+    notes[findInd].important = !(notes[findInd].important)
+    res.json((notes[findInd]));
+})
+
 const generateId = () => {
     const maxId = notes.length > 0 ? Math.max(...notes.map(note => parseInt(note.id))) : 0
     return (maxId + 1);
