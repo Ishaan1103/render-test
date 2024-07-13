@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import Note from './models/note.js'
-import 'dotenv/config'
 import { Query } from 'mongoose';
 const app = express();
 app.use(express.static('dist'))
